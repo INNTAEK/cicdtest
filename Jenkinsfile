@@ -17,8 +17,8 @@ pipeline {
     stage('deploy kubernetes') {
       steps {
         sh '''
-        kubectl create deployment pl-bulk-prod --image=inntaek/cicdtest:red
-        kubectl create deployment pl-bulk-prod --type=LoadBalanver --port=80 --target-port=80 --name=pl-bulk-prod-
+        ansible master -m command -a 'kubectl create deployment pl-bulk-prod --image=inntaek/cicdtest:red'
+        ansible master -m command -a 'kubectl create deployment pl-bulk-prod --type=LoadBalanver --port=80 --target-port=80 --name=pl-bulk-prod-'
 
         '''
       }
