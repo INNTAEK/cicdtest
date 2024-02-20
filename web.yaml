@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web # "1"
+  #아래내용은 Pod에 대한 구성내용
+  template:
+    metadata:
+      name: jenkins-pod
+      labels:
+        app: web # 반드시 "1"과 동일해야한다.
+    spec:
+      containers:
+        - name: jenkins-ctn
+          image: inntaek/cicdtest:green
+          ports:
+            - containerPort: 80
